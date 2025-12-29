@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Test</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <link href="https://fonts.googleapis.com/css2?family=Futura+PT:wght@700&display=swap" rel="stylesheet">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        :root {
+            --jp-red: #8B0000;
+            --dom-amber: #FFBF00;
+            --jungle-green: #2E8B57;
+            --steel-blue: #4682B4;
+            --jp-black: #1C1C1C;
+            --rust-red: #B22222;
+            --dom-brown: #7B3F00;
+            --sand-beige: #F4A460;
+            --volcanic-orange: #FF4500;
+            --royal-purple:#6A0DAD;
+            --ash-grey: #696969;
+            --cloud-white: #F5F5F5;
+            --maroon-dark: #8B0000;
+            --maroon-medium: #A52A2A;
+            --maroon-very-light: #FFDAB9;
+        }
+        body {  
+            background-color: #4F7942;
+            font-family: 'Futura PT', 'Arial Black', sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 30px auto 50px;
+            background-color: #C7D8E0;
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 0 20px rgba(128, 0, 0, 0.1);
+        }
+        .grades-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
+            gap: 15px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .logo{
+            mix-blend-mode: multiply;
+            background-color: transparent;
+            width: 80px;
+            height:auto;
+            border:none;
+            box-shadow:none;
+        }
+        h1 {
+            color: var(--danger-red);
+            text-shadow: 2px 2px 5px var(--charcoal-black);
+            text-align: center;
+        }
+        h2 {
+            color: var(--dom-brown);
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .form-control {
+            height: 30px;
+            padding: 4px 8px;
+            font-size: 0.9rem;
+            border: 1px solid var(--maroon-medium);
+            border-radius: 6px;
+        }
+        .form-control:focus {
+            border-color: var(--maroon-dark);
+            box-shadow: 0 0 0 0.25rem rgba(128, 0, 0, 0.25);
+        }
+        .btn-primary {
+            background-color: var(--ash-grey);
+            border-color: var(--maroon-dark);
+            width: 100%;
+            padding: 6px 10px;
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+        .btn-primary:hover {
+            background-color: var(--volcanic-orange);
+            border-color: var(--maroon-medium);
+        }
+        #student_info {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--maroon-dark);
+            margin-top: 30px;
+            padding: 15px;
+            background-color: var(--maroon-very-light);
+            border-left: 5px solid var(--maroon-dark);
+            border-radius: 5px;
+        }
+        #summary {
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-family: monospace;
+        }
+        #output {
+            font-size: 1.3rem;
+            color: var(--maroon-dark);
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 215, 0, 0.2);
+            border-radius: 5px;
+        }
+        .input-group-text {
+            font-size: 0.9rem;
+            padding: 4px 8px;
+            min-width: 70px;
+            background-color: var(--maroon-dark);
+            color: white;
+            border: 1px solid var(--maroon-dark);
+        }
+        .grade-input-group {
+            margin-bottom: 8px;
+        }
+        .grades-container {
+            gap: 10px;
+        }
+        #science-label { background-color: var(--jungle-green); color: white; }
+        #math-label { background-color: var(--steel-blue); color: white; }
+        #english-label { background-color: var(--jp-red); color: white; }
+        #filipino-label { background-color: var(--sand-beige); color: white; }
+        #ict-label { background-color: var(--royal-purple); color: white; }
+        #pe-label { background-color: var(--dom-amber); color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <h1><img src="logo.png" alt="Jurassic Park Logo" class="logo">Student Grade Calculator</h1>
+            
+        <div class="mb-3">
+                <div class="input-group">
+                <span class="input-group-text">First Name</span>
+                <input type="text" class="form-control" id="first_name" >
+            </div><br>
+            
+            <div class="input-group">
+                <span class="input-group-text">Last Name</span>
+                <input type="text" class="form-control" id="last_name" >
+            </div>
+        </div>
+
+        <h2>Enter your grades:</h2>
+        
+        <div class="grades-container">
+            <div class="grade-input-group">
+                <div class="input-group">
+                    <span class="input-group-text" id="science-label">Science</span>
+                    <input type="text" class="form-control" id="science" placeholder="0-100">
+                </div>
+            </div>
+            
+            <div class="grade-input-group">
+                <div class="input-group">
+                    <span class="input-group-text" id="math-label">Math</span>
+                    <input type="text" class="form-control" id="math" placeholder="0-100">
+                </div>
+            </div>
+            
+            <div class="grade-input-group">
+                <div class="input-group">
+                    <span class="input-group-text" id="english-label">English</span>
+                    <input type="text" class="form-control" id="english" placeholder="0-100">
+                </div>
+            </div>
+            
+            <div class="grade-input-group">
+                <div class="input-group">
+                    <span class="input-group-text" id="filipino-label">Filipino</span>
+                    <input type="text" class="form-control" id="filipino" placeholder="0-100">
+                </div>
+            </div>
+            
+            <div class="grade-input-group">
+                <div class="input-group">
+                    <span class="input-group-text" id="ict-label">ICT</span>
+                    <input type="text" class="form-control" id="ict" placeholder="0-100">
+                </div>
+            </div>
+            
+            <div class="grade-input-group">
+                <div class="input-group">
+                    <span class="input-group-text" id="pe-label">PE</span>
+                    <input type="text" class="form-control" id="pe" placeholder="0-100">
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn btn-primary" type="submit" py-click="general_weighted_average">Calculate GWA</button>
+        
+        <div id="student_info"></div>
+        <pre id="summary"></pre>
+        <div id="output"></div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="py" src="main.py"></script>
+</body>
+</html>
